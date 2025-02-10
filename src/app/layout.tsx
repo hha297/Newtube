@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { League_Spartan } from 'next/font/google';
 import './globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const leagueSpartan = League_Spartan({
         subsets: ['latin'],
@@ -17,8 +18,10 @@ export default function RootLayout({
         children: React.ReactNode;
 }>) {
         return (
-                <html lang="en">
-                        <body className={leagueSpartan.className}>{children}</body>
-                </html>
+                <ClerkProvider afterSignOutUrl={'/'}>
+                        <html lang="en">
+                                <body className={leagueSpartan.className}>{children}</body>
+                        </html>
+                </ClerkProvider>
         );
 }
