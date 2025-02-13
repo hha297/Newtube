@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { League_Spartan } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
+import { TRPCProvider } from '@/trpc/client';
 
 const leagueSpartan = League_Spartan({
         subsets: ['latin'],
@@ -20,7 +21,9 @@ export default function RootLayout({
         return (
                 <ClerkProvider afterSignOutUrl={'/'}>
                         <html lang="en">
-                                <body className={leagueSpartan.className}>{children}</body>
+                                <body className={leagueSpartan.className}>
+                                        <TRPCProvider>{children}</TRPCProvider>
+                                </body>
                         </html>
                 </ClerkProvider>
         );
